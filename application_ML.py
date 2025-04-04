@@ -72,7 +72,7 @@ if file:
 if not train.empty:
     features = st.multiselect(label="Select Features", options=train.columns)
     target = st.selectbox(label="Select Target", options=train.columns)
-    path_sub = st.text_input(label="entre path of submission file",value="C:/Users/SOL/Downloads/sub.csv")
+    path_sub = st.text_input(label="entre path of submission file",value="C:/Users/SOL/Downloads/sub1.csv")
     if features and target:
         x = train[features]
         y = train[target]
