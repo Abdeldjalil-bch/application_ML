@@ -677,39 +677,39 @@ if not train.empty:
 
             # Train model button
             if st.button("Train Model"):
-    try:
-        model.fit(x, y)
-        st.success("Model trained successfully!")
-        # Optional model evaluation
-        if test is not None and not test.empty:
-            X_test = test[features]
-            predictions = model.predict(X_test)
-            st.write("First few predictions:")
-            st.write(predictions[:10])
-            
-            # Create submission file
-            if not submission.empty:
-                submission[target] = predictions
-            else:
-                # Create a new submission DataFrame if it doesn't exist
-                submission = pd.DataFrame()
-                submission[target] = predictions
-                
-            st.write("Submission file preview:")
-            st.write(submission.head())
-            
-            # Convert DataFrame to CSV for download
-            csv = submission.to_csv(index=False)
-            
-            # Provide download button
-            st.download_button(
-                label="Download Submission File",
-                data=csv,
-                file_name="submission.csv",
-                mime="text/csv"
-            )
-    except Exception as e:
-        st.error(f"Error training model: {e}")
+                try:
+                    model.fit(x, y)
+                    st.success("Model trained successfully!")
+                    # Optional model evaluation
+                    if test is not None and not test.empty:
+                        X_test = test[features]
+                        predictions = model.predict(X_test)
+                        st.write("First few predictions:")
+                        st.write(predictions[:10])
+                        
+                        # Create submission file
+                        if not submission.empty:
+                            submission[target] = predictions
+                        else:
+                            # Create a new submission DataFrame if it doesn't exist
+                            submission = pd.DataFrame()
+                            submission[target] = predictions
+                            
+                        st.write("Submission file preview:")
+                        st.write(submission.head())
+                        
+                        # Convert DataFrame to CSV for download
+                        csv = submission.to_csv(index=False)
+                        
+                        # Provide download button
+                        st.download_button(
+                            label="Download Submission File",
+                            data=csv,
+                            file_name="submission.csv",
+                            mime="text/csv"
+                        )
+                except Exception as e:
+                    st.error(f"Error training model: {e}")
 
         # Requirements note
         st.sidebar.info("""
