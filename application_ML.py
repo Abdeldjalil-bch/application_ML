@@ -76,7 +76,7 @@ if not train.empty:
     submission_filename = st.text_input(
     label="Submission filename (optional)",
     value="submission.csv",
-    help="Enter the desired filename for your submission file"
+    help="Enter the desired filename for your submission file")
     if features and target:
         x = train[features]
         y = train[target]
