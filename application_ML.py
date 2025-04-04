@@ -73,6 +73,10 @@ if not train.empty:
     features = st.multiselect(label="Select Features", options=train.columns)
     target = st.selectbox(label="Select Target", options=train.columns)
     path_sub = st.text_input(label="entre path of submission file",value="C:/Users/SOL/Downloads/sub1.csv")
+    submission_filename = st.text_input(
+    label="Submission filename (optional)",
+    value="submission.csv",
+    help="Enter the desired filename for your submission file"
     if features and target:
         x = train[features]
         y = train[target]
@@ -701,11 +705,11 @@ if not train.empty:
                         # Convert DataFrame to CSV for download
                         csv = submission.to_csv(index=False)
                         
-                        # Provide download button
+                        # Provide download button with the custom filename
                         st.download_button(
                             label="Download Submission File",
                             data=csv,
-                            file_name="submission.csv",
+                            file_name=submission_filename,
                             mime="text/csv"
                         )
                 except Exception as e:
