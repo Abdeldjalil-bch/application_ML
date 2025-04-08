@@ -70,8 +70,9 @@ if file:
 
 # Feature and target selection
 if not train.empty:
-    features = st.multiselect(label="Select Features", options=train.columns)
     target = st.selectbox(label="Select Target", options=train.columns)
+    features = st.multiselect(label="Select Features", options=train.columns, default=[col for col in train.columns if col != target])
+    
     path_sub = st.text_input(label="entre path of submission file",value="C:/Users/SOL/Downloads/sub1.csv")
     submission_filename = st.text_input(
     label="Submission filename (optional)",
