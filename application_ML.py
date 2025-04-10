@@ -552,11 +552,15 @@ if not train.empty:
                     ])
                 # Paramètres génériques pour lénaire reg
                 elif model_name == "Linear Regression":
-                    
+                    st.write("Linear Regression Parameters")
+                    fit_intercept = st.checkbox("Fit Intercept", value=True)
+                    normalize = st.checkbox("Normalize", value=False)
+
                     model = ImbPipeline([
                         ('preprocessor', preprocessor),
                         ('regressor', LinearRegression(
-                            
+                            fit_intercept=fit_intercept,
+                            normalize=normalize
                         ))
                     ])
                 # Paramètres génériques pour KNN Regression
